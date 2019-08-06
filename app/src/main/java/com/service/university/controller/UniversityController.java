@@ -1,4 +1,4 @@
-package com.service.university;
+package com.service.university.controller;
 
 import com.service.university.model.University;
 import lombok.extern.slf4j.Slf4j;
