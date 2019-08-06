@@ -36,7 +36,7 @@ public class AppTest {
     }
 
     @Test
-    public void potTest() {
+    public void postTest() {
         ResponseEntity<String> forEntity = testRestTemplate.postForEntity(url,null, String.class);
         assertEquals(HttpStatus.OK, forEntity.getStatusCode());
     }
