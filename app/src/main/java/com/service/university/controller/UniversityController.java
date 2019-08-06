@@ -18,14 +18,14 @@ public class UniversityController {
 
     @PostMapping("/universities")
     public ResponseEntity postUniversity() {
-        log.info("Get all students");
+        log.info("Post a university");
         //  List<Student> allStudents = studentService.getAll();
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/universities")
     public ResponseEntity<List<University>> getUniversities() {
-        log.info("Get all students");
+        log.info("Get all universities");
         //  List<Student> allStudents = studentService.getAll();
         return ResponseEntity.ok(asList());
     }
