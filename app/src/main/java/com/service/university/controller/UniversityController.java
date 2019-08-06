@@ -4,6 +4,7 @@ import com.service.university.model.University;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,10 +15,18 @@ import static java.util.Arrays.asList;
 @RestController
 public class UniversityController {
 
-    @GetMapping("/universities")
-    public ResponseEntity<List<University>> getStudents() {
+
+    @PostMapping("/universities")
+    public ResponseEntity postUniversity() {
         log.info("Get all students");
-      //  List<Student> allStudents = studentService.getAll();
+        //  List<Student> allStudents = studentService.getAll();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/universities")
+    public ResponseEntity<List<University>> getUniversities() {
+        log.info("Get all students");
+        //  List<Student> allStudents = studentService.getAll();
         return ResponseEntity.ok(asList());
     }
 }
