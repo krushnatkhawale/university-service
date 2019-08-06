@@ -1,5 +1,6 @@
 package com.service.university;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,16 @@ public class AppTest {
 
     @Autowired
     TestRestTemplate testRestTemplate;
+    private String url;
+
+    @Before
+    public void setup(){
+        url = "http://localhost:" + port + "/universities";
+    }
 
     @Test
     public void someTest() {
-        ResponseEntity<String> forEntity = testRestTemplate.getForEntity("http://localhost:" + port + "/universities", String.class);
+        ResponseEntity<String> forEntity = testRestTemplate.getForEntity(url, String.class);
         System.out.println("REPSONSE: " + forEntity.getStatusCodeValue());
         assertEquals(HttpStatus.OK, forEntity.getStatusCode());
     }
