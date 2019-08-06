@@ -30,9 +30,14 @@ public class AppTest {
     }
 
     @Test
-    public void someTest() {
+    public void getTest() {
         ResponseEntity<String> forEntity = testRestTemplate.getForEntity(url, String.class);
-        System.out.println("REPSONSE: " + forEntity.getStatusCodeValue());
+        assertEquals(HttpStatus.OK, forEntity.getStatusCode());
+    }
+
+    @Test
+    public void potTest() {
+        ResponseEntity<String> forEntity = testRestTemplate.postForEntity(url,null, String.class);
         assertEquals(HttpStatus.OK, forEntity.getStatusCode());
     }
 }
