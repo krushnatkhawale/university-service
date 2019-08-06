@@ -6,6 +6,8 @@
 *.iws
 *.iml
 *.ipr
+/.idea/
+/app/.idea/
 /out/
 /app/out/
 /app/build/
