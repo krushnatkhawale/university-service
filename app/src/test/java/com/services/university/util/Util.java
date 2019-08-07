@@ -1,6 +1,6 @@
-package com.service.university.util;
+package com.services.university.util;
 
-import com.service.university.model.University;
+import com.services.university.model.University;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
