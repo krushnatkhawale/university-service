@@ -1,6 +1,6 @@
-package com.service.university.controller;
+package com.services.university.controller;
 
-import com.service.university.model.University;
+import com.services.university.model.University;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
