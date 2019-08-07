@@ -2,6 +2,7 @@ package com.service.university.controller;
 
 import com.service.university.model.University;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class UniversityController {
     public ResponseEntity postUniversity(@RequestBody University university) {
         log.info("Post a university");
         //  List<Student> allStudents = studentService.getAll();
-        return ResponseEntity.ok().build();
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping("/universities")
