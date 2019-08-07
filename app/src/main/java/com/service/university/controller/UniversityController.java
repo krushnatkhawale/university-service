@@ -15,7 +15,6 @@ import static java.util.Arrays.asList;
 @RestController
 public class UniversityController {
 
-
     @PostMapping("/universities")
     public ResponseEntity postUniversity() {
         log.info("Post a university");
