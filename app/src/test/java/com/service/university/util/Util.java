@@ -1,5 +1,6 @@
-package com.service.university.model;
+package com.service.university.util;
 
+import com.service.university.model.University;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,10 @@ public class Util {
 
     public static void assertOk(HttpStatus statusCode) {
         assertEquals(HttpStatus.OK, statusCode);
+    }
+
+    public static void assertCreated(HttpStatus statusCode) {
+        assertEquals(HttpStatus.CREATED, statusCode);
     }
 
     public static JSONObject getRequestBodyAsJson(ResponseEntity<String> forEntity) {
