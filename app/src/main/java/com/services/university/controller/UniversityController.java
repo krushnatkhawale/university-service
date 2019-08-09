@@ -26,6 +26,14 @@ public class UniversityController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
 
+    @GetMapping("/universities/{id}")
+    public ResponseEntity<University> getUniversity(@PathVariable String id) {
+        log.info("Get a university: {}", id);
+        University university = universityService.get(id);
+        return ResponseEntity.ok(university);
+    }
+
+
     @GetMapping("/universities")
     public ResponseEntity<List<University>> getUniversities() {
         log.info("Get all universities");
