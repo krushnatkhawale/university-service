@@ -33,8 +33,8 @@ public class UniversityController {
         return ResponseEntity.ok(universities);
     }
 
-    @DeleteMapping("/universities")
-    public ResponseEntity<List<University>> deleteUniversity(String id) {
+    @DeleteMapping("/universities/{id}")
+    public ResponseEntity<List<University>> deleteUniversity(@PathVariable String id) {
         log.info("Delete university, id: {}", id);
         universityService.delete(id);
         return ResponseEntity.ok().build();
