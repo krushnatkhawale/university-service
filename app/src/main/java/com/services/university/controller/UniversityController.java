@@ -35,8 +35,8 @@ public class UniversityController {
 
     @DeleteMapping("/universities")
     public ResponseEntity<List<University>> deleteUniversity(String id) {
-        log.info("Delete all universities");
-        List<University> universities = universityService.getAll();
+        log.info("Delete university, id: {}", id);
+        universityService.delete(id);
         return ResponseEntity.ok(universities);
     }
 }
