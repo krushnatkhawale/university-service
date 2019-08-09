@@ -37,6 +37,6 @@ public class UniversityController {
     public ResponseEntity<List<University>> deleteUniversity(String id) {
         log.info("Delete university, id: {}", id);
         universityService.delete(id);
-        return ResponseEntity.ok(universities);
+        return ResponseEntity.ok().build();
     }
 }
