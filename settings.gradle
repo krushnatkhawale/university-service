@@ -1,4 +1,4 @@
-rootProject.name = 'student-service'
+rootProject.name = 'university-service'
 
 include 'app'
 include 'qa'
