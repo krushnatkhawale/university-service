@@ -1,0 +1,71 @@
+---
+- name: Test connection to remote server
+  ping:
+- name: Force terminate if application is running already
+  shell: "{{ appdir }}/stop.sh"
+  args:
+    chdir: "{{ appdir }}"
+  ignore_errors: yes
+
+- name: Cleanup - remove backup
+  file:
+    path: "{{ appdir }}/../{{ backup_dir }}"
+    state: absent
+  ignore_errors: yes
+
+- name: Cleanup - take new backup
+  shell: "cp -a ./. \"../{{ backup_dir }}\""
+  args:
+    chdir: "{{ appdir }}"
+  ignore_errors: yes
+
+- name: Cleanup - existing deployment cleanup
+  block:
+  - find:
+      paths: "{{ appdir }}"
+      patterns: "*"
+    register: files_to_delete
+  - file:
+      path: "{{ item.path }}"
+      state: absent
+    with_items: "{{ files_to_delete.files }}"
+
+- name: Create directory structure if does not exists
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - "{{ rootdir }}"
+    - "{{ appdir }}"
+    - "{{ appdir }}/config"
+
+- name: Copying configuration files
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "config/", dest: "{{ appdir }}/config/" }
+    - { src: "start.sh", dest: "{{ appdir }}/start.sh" }
+    - { src: "stop.sh", dest: "{{ appdir }}/stop.sh" }
+
+- name: Enabled execute mode for startup scripts
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: u+rxw,g+rwx,o+rwx
+  with_items:
+    - { src: "start.sh", dest: "{{ appdir }}/start.sh" }
+    - { src: "stop.sh", dest: "{{ appdir }}/stop.sh" }
+
+- name: Copying application JAR file
+  copy:
+    src: "{{ item }}"
+    dest: "{{ appdir }}/student-service.jar"
+  with_fileglob:
+    - app*
+
+- name: Start student-service application through start.sh
+  shell: "{{ appdir }}/start.sh"
+  args:
+    chdir: "{{ appdir }}"
+    creates: "{{ appdir }}/student-service.pid"
