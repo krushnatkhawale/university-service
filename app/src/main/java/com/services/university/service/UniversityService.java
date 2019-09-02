@@ -25,7 +25,7 @@ public class UniversityService {
 
     public University get(String id) {
         return universityRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("No student record found with id " + id));
+                .orElseThrow(() -> new RuntimeException("No university record found with id " + id));
     }
 
     public List<University> getAll() {

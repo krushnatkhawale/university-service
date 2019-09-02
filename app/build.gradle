@@ -1,12 +1,25 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath("com.example:dependency-collection:1.0.0-SNAPSHOT")
+    }
+}
+
 plugins {
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'org.springframework.boot' version '2.1.7.RELEASE'
     id 'java'
 }
 
+apply plugin: com.example.plugin.DependencyCollectionPlugin
+
 sourceCompatibility = 1.8
 
 dependencies {
+    compile("com.example:dependency-collection:1.0.0-SNAPSHOT")
+
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa"
     compileOnly "org.projectlombok:lombok"
@@ -22,4 +35,9 @@ task copyAppJarToAnsibleFiles {
         into '../deployment/roles/university-ervice/files/'
     }
     dependsOn build
+}
+
+dependencyCollection {
+    targetUrl = "providedHost"
+    disablePost = false
 }

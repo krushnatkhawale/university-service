@@ -60,12 +60,12 @@
 - name: Copying application JAR file
   copy:
     src: "{{ item }}"
-    dest: "{{ appdir }}/student-service.jar"
+    dest: "{{ appdir }}/university-service.jar"
   with_fileglob:
     - app*
 
-- name: Start student-service application through start.sh
+- name: Start university-service application through start.sh
   shell: "{{ appdir }}/start.sh"
   args:
     chdir: "{{ appdir }}"
-    creates: "{{ appdir }}/student-service.pid"
+    creates: "{{ appdir }}/university-service.pid"
