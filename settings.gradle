@@ -3,3 +3,5 @@ rootProject.name = 'university-service'
 include 'app'
 include 'qa'
 include 'performance-test'
+
+project(":app").name = rootProject.name
